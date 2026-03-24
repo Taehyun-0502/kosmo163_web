@@ -7,9 +7,15 @@ import java.sql.ResultSet;
 import com.naver.app.util.DBConnection;
 
 public class DepartmentDAO {
-
+		private DBConnection dbc;
+		public DepartmentDAO() {
+			this.dbc = new DBConnection();
+			
+		}
+		
+		
 	public void detail(int departmentId) throws Exception {
-		DBConnection dbc =new DBConnection();
+		
 		Connection con=dbc.getConnection();
 		String sql = """
 					SELECT * FROM DEPARTMENTS 
@@ -40,7 +46,7 @@ public class DepartmentDAO {
 	
 	public void list () throws Exception {
 		//db 진입
-		DBConnection dbc = new DBConnection();
+		
 		Connection con = dbc.getConnection();
 		// 쿼리문 잣성
 		String sql = "SELECT * FROM DEPARTMENTS"

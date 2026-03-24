@@ -7,9 +7,16 @@ import java.sql.ResultSet;
 import com.naver.app.util.DBConnection;
 
 public class CountryDAO {
+	private DBConnection db;
+	
+	public CountryDAO() {
+		this.db =new DBConnection();
+	}
+	
+	
 	
 	public void detail(String name1) throws Exception {
-		DBConnection db = new DBConnection();
+		
 		Connection con = db.getConnection();
 		
 		String sql = "SELECT * FROM COUNTRIES"
@@ -46,8 +53,8 @@ public class CountryDAO {
 	
 
 	public void conlist() throws Exception {
-		DBConnection dbc = new DBConnection();
-		Connection con = dbc.getConnection();
+		
+		Connection con = db.getConnection();
 		
 		String sql ="SELECT * FROM COUNTRIES";
 		
