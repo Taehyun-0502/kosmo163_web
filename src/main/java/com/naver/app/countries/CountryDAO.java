@@ -6,7 +6,44 @@ import java.sql.ResultSet;
 
 import com.naver.app.util.DBConnection;
 
-public class CountrieDAO {
+public class CountryDAO {
+	
+	public void detail(String name1) throws Exception {
+		DBConnection db = new DBConnection();
+		Connection con = db.getConnection();
+		
+		String sql = "SELECT * FROM COUNTRIES"
+				+ " WHERE COUNTRY_ID =?";
+		
+		PreparedStatement pr = con.prepareStatement(sql);
+		pr.setString(1,name1);
+		
+		ResultSet rs = pr.executeQuery();
+		
+		if(rs.next()) {
+			String name = rs.getString("COUNTRY_NAME");
+			System.out.println(name);
+			
+		}else {
+			System.out.println("나라명이 없습니다");
+		}
+		rs.close();
+		pr.close();
+		con.close();
+		
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
 
 	public void conlist() throws Exception {
 		DBConnection dbc = new DBConnection();

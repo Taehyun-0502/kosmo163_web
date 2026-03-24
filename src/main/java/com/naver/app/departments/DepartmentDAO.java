@@ -8,14 +8,18 @@ import com.naver.app.util.DBConnection;
 
 public class DepartmentDAO {
 
-	public void detail() throws Exception {
+	public void detail(int departmentId) throws Exception {
 		DBConnection dbc =new DBConnection();
 		Connection con=dbc.getConnection();
 		String sql = """
 					SELECT * FROM DEPARTMENTS 
-					WHERE DEPARTMENT_ID =200
+					WHERE DEPARTMENT_ID =?
 		""";
 		PreparedStatement pr =con.prepareStatement(sql);
+		
+		
+		pr.setInt(1, departmentId);
+		
 		ResultSet rs =pr.executeQuery();
 		if(rs.next()) {
 			String id = rs.getNString("DEPARTMENT_NAME");
