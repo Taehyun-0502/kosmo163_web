@@ -9,7 +9,7 @@ public class DBConnection {
 			
 			String user="hr";
 			String password="hr";
-			String url="jdbc:oracle:thin:@192.168.0.7:1521:xe";
+			String url="jdbc:oracle:thin:@localhost:1521:xe";
 			String driver="oracle.jdbc.driver.OracleDriver";
 			
 			
