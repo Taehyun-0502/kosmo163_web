@@ -10,13 +10,7 @@ public class DBConnectionTest {
 
 	public static void main(String[] args) {
 		DBConnection db =new DBConnection();
-		DepartmentDAO dao = new DepartmentDAO();
-		try {
-			dao.list();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		CountrieDAO cdo = new CountrieDAO();
 		try {
 			cdo.conlist();
