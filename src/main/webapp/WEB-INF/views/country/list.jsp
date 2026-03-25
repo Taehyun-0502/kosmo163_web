@@ -22,11 +22,11 @@
 						<c:forEach items ="${list}" var= "d">
 						
 						<tr>
+						<td>${d.countryId}</td>
 						<td>
-						${d.countryId} 
-						${d.countryName}
-						 ${d.regionId}
+						<a href="/country/detail?countryId=${d.countryId}">${d.countryName}</a> 
 						</td>
+						<td> ${d.regionId}</td>
 						</tr>
 						
 						
