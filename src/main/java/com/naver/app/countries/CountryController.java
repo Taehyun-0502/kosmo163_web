@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Servlet implementation class CountryController
@@ -27,6 +28,19 @@ public class CountryController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		CountryDAO dao = new CountryDAO();
+		
+		try {
+			ArrayList<CountryDTO> ar =dao.conlist();
+			request.setAttribute("list", ar);
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		
+		
 		RequestDispatcher view= request.getRequestDispatcher("/WEB-INF/views/country/list.jsp");
 		view.forward(request, response);
 		

@@ -3,6 +3,7 @@ package com.naver.app.countries;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import com.naver.app.util.DBConnection;
 
@@ -52,7 +53,7 @@ public class CountryDAO {
 	
 	
 
-	public void conlist() throws Exception {
+	public ArrayList<CountryDTO> conlist() throws Exception {
 		
 		Connection con = db.getConnection();
 		
@@ -61,13 +62,18 @@ public class CountryDAO {
 		PreparedStatement pr= con.prepareStatement(sql);
 		
 		ResultSet rs =pr.executeQuery();
-		
+		ArrayList<CountryDTO> ar=new ArrayList<>();
 		
 		while(rs.next()) {
-			
+			CountryDTO dto =new CountryDTO();
 			String id = rs.getString("COUNTRY_ID");
 			String name = rs.getString("COUNTRY_NAME");
 			int reid = rs.getInt("REGION_ID");
+			dto.setCountryId(id);
+			dto.setCountryName(name);
+			dto.setRegionId(reid);
+			
+			ar.add(dto);
 			
 			System.out.println(id+" : "+name+" : "+reid);
 			
@@ -75,7 +81,7 @@ public class CountryDAO {
 		rs.close();
 		pr.close();
 		con.close();
-		
+		return ar;
 		
 	}
 	

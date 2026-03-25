@@ -3,6 +3,7 @@ package com.naver.app.departments;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import com.naver.app.util.DBConnection;
 
@@ -36,6 +37,7 @@ public class DepartmentDAO {
 		pr.close();
 		con.close();
 		
+		
 	}
 	
 	
@@ -44,7 +46,7 @@ public class DepartmentDAO {
 	
 	
 	
-	public void list () throws Exception {
+	public ArrayList<DepartmentDTO> list () throws Exception {
 		//db 진입
 		
 		Connection con = dbc.getConnection();
@@ -55,19 +57,28 @@ public class DepartmentDAO {
 		PreparedStatement pr = con.prepareStatement(sql);
 	//최종 전송 및 결과 처리 	
 	ResultSet rs = pr.executeQuery();
-	
+		ArrayList<DepartmentDTO> ar =new ArrayList<>();
 		while(rs.next()) {
+			DepartmentDTO dto =new DepartmentDTO();
 			String name =rs.getString("DEPARTMENT_NAME");
 			System.out.println(name);
 			int id =rs.getInt("DEPARTMENT_ID");
 			System.out.println(id);
+			int mid = rs.getInt("MANAGER_ID");
+			int lid = rs.getInt("LOCATION_ID");
 			
+			dto.setDepartmentName(name);
+			dto.setDepartmentId(id);
+			dto.setManagerId(mid);
+			dto.setLocationId(lid);
+			
+			ar.add(dto);
 			
 		}
 		rs.close();
 		pr.close();
 		con.close();
-		
+		return ar;	
 	}
 	
 	
