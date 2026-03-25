@@ -15,7 +15,7 @@ public class DepartmentDAO {
 		}
 		
 		
-	public void detail(int departmentId) throws Exception {
+	public DepartmentDTO detail(int departmentId) throws Exception {
 		
 		Connection con=dbc.getConnection();
 		String sql = """
@@ -26,17 +26,21 @@ public class DepartmentDAO {
 		
 		
 		pr.setInt(1, departmentId);
-		
+		DepartmentDTO dto=null;
 		ResultSet rs =pr.executeQuery();
 		if(rs.next()) {
-			String id = rs.getNString("DEPARTMENT_NAME");
-			System.out.println(id);
-		}else {
-			System.out.println("부서가 없다.");
-		}rs.close();
+			dto =new DepartmentDTO();
+			dto.setDepartmentId(rs.getInt("DEPARTMENT_ID"));
+			dto.setDepartmentName(rs.getString("DEPARTMENT_NAME"));
+			dto.setManagerId(rs.getInt("MANAGER_ID"));
+			dto.setLocationId(rs.getInt("LOCATION_ID"));
+			
+			
+		}
+		rs.close();
 		pr.close();
 		con.close();
-		
+		return dto;
 		
 	}
 	
