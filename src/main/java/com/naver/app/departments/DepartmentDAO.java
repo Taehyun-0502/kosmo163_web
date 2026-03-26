@@ -14,6 +14,31 @@ public class DepartmentDAO {
 			
 		}
 		
+		public void create(DepartmentDTO dto) throws Exception {
+			Connection con= dbc.getConnection();
+			String sql = """ 
+					INSERT INTO DEPARTMENTS
+					VALUES (DEPARTMENTS_SEQ.NEXTVAL,?,?,?)
+					""";
+			PreparedStatement pr =con.prepareStatement(sql);
+			pr.setString(1, dto.getDepartmentName());
+			pr.setInt(2, dto.getManagerId());
+			pr.setInt(3, dto.getLocationId());
+			
+			int result = pr.executeUpdate();
+			System.out.println(result);
+			
+			pr.close();
+			con.close();
+			
+			
+			
+		}
+		
+		
+		
+		
+		
 		
 	public DepartmentDTO detail(int departmentId) throws Exception {
 		

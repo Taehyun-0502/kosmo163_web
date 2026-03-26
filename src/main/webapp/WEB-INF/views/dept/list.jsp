@@ -11,6 +11,9 @@
 		
 		<h1>부서 리스트 입니다</h1>
 		<h5>locale a</h5>
+			<div> 
+				<a href = "/dept/create">부서등록</a>
+			</div>
 		
 		<div>
 		<table> 
