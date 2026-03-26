@@ -11,9 +11,15 @@
 	<body>
 		<h1>나라 리스트 입니다</h1>
 			<div>
+					<div>
+						<a href="/country/create">나라등록 </a>
+					</div>
+			
 				<table>
 					
 					<thead>
+						
+						
 						<tr>
 							<th>나라 ID</th><th>나라 이름</th><th>REGION_ID</th>
 						</tr>				
