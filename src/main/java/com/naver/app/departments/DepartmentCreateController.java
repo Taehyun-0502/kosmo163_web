@@ -49,7 +49,7 @@ public class DepartmentCreateController extends HttpServlet {
 		dto.setManagerId(Integer.parseInt(n));
 		dto.setLocationId(Integer.parseInt(r));
 		try {
-			int result = 0;   //dao.create(dto);
+			int result = dao.create(dto);
 			if(result >0) {
 				response.sendRedirect("/dept/list");
 				
