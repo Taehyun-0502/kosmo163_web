@@ -40,7 +40,34 @@ public class DepartmentCreateController extends HttpServlet {
 		// TODO Auto-generated method stub
 		System.out.println("db에 저장하기");
 		
+		String name = request.getParameter("departmentName");
+		String n = request.getParameter("managerId");
+		String r = request.getParameter("locationId");
+		DepartmentDTO dto=new DepartmentDTO();
+		DepartmentDAO dao =new DepartmentDAO();
+		dto.setDepartmentName(name);
+		dto.setManagerId(Integer.parseInt(n));
+		dto.setLocationId(Integer.parseInt(r));
+		try {
+			int result = dao.create(dto);
+			if(result >0) {
+				response.sendRedirect("/dept/list");
+				
+				
+				
+			}else {}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		
 	}
 
 }
+
+
+
+

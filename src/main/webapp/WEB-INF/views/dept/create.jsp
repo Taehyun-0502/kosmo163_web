@@ -12,15 +12,16 @@
 		<form action="/dept/create" method="post"> 
 				<div>
 					<label >부서명</label>
-					<input type="text" >
+					<!-- DTO 의 setter의 이름과 동일하게  -->
+					<input type="text" name="departmentName">
 				</div>
 				<div>
 					<label>관리자 </label>
-					<input type="text" >
+					<input type="text" name="managerId">
 				</div>
 				<div>
 					<lable>지역 코드</lable>
-					<input type="text">
+					<input type="text" name="locationId">
 				</div>
 				<button type="submit">button</button>
 				<input type="submit"value="create">
