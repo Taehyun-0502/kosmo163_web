@@ -1,23 +1,25 @@
-package com.naver.app.departments;
+package com.naver.app.Community;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.PreparedStatement;
 
 /**
- * Servlet implementation class DepartmentDeleteController
+ * Servlet implementation class CommunityDetailController
  */
-@WebServlet("/dept/delete")
-public class DepartmentDeleteController extends HttpServlet {
+@WebServlet("/comm/detail")
+public class CommunityDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DepartmentDeleteController() {
+    public CommunityDetailController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,24 +29,7 @@ public class DepartmentDeleteController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		DepartmentDAO dao =new DepartmentDAO();
-		String id =request.getParameter("departmentId");
-		DepartmentDTO dto = new DepartmentDTO();
-		dto.setDepartmentId(Integer.parseInt(id));
-		try {
-		int result =dao.delete(dto);
-		if(result<0) {
-			response.sendRedirect("/dept/list");
-		}else {
-			response.sendRedirect("./detail?departmentId="+id);
-		}
-		
-		
-		
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		RequestDispatcher re = request.getRequestDispatcher("/WEB-INF/views/comm/detail.jsp");
 	}
 
 	/**
