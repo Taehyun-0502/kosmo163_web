@@ -12,5 +12,17 @@
 	<h4>${detail.countryName}  </h4>
 	<h4>${detail.regionId}  </h4>
 	
+		<form action ="/country/delete" method="get">
+		
+		<input type ="hidden" name="countryId" value="${detail.countryId}">
+		<button type = "submit" name= "countryId" >delete</button>
+		
+		</form>
+	
+	
+	
+	
+	
+	
 </body>
 </html>

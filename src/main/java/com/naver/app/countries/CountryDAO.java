@@ -14,6 +14,33 @@ public class CountryDAO {
 		this.db =new DBConnection();
 	}
 	
+	public int delete(CountryDTO dto) throws Exception {
+		Connection con= db.getConnection();
+		String sql= """
+					DELETE COUNTRIES WHERE COUNTRY_ID = ?
+				
+				""";
+		PreparedStatement st =con.prepareStatement(sql);
+		st.setString(1, dto.getCountryId());;
+		int result = st.executeUpdate();
+		
+		st.close();
+		con.close();
+		return result;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public int create(CountryDTO dto) throws Exception {
 			Connection connection=db.getConnection();
 			String sql ="""
