@@ -14,6 +14,32 @@ public class DepartmentDAO {
 			
 		}
 		
+		public int delete(DepartmentDTO dto) throws Exception {
+			Connection con= dbc.getConnection();
+			String sql="""
+					DELETE DEPARTMENTS WHERE DEPARTMENT_ID = ?
+					""";
+			
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setInt(1, dto.getDepartmentId());
+			int result =st.executeUpdate();
+			
+			st.close();
+			con.close();
+			
+			return result;
+			
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		public int create(DepartmentDTO dto) throws Exception {
 			Connection con= dbc.getConnection();
 			String sql = """ 

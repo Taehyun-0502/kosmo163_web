@@ -14,5 +14,13 @@
 	<h4>${detail.locationId}  </h4>
 	
 	
+		<a href="/dept/delete?departmentId=${detail.departmentId}">삭제</a>
+		<form action="/dept/delete"method="get">
+			<input type="hidden" name="departmentId"  value="${detail.departmentId}">
+			<button type= "submit">delete</button>
+		</form>
+	
+	
+	
 </body>
 </html>
