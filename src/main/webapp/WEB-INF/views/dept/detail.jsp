@@ -13,7 +13,7 @@
 	<h4>${detail.managerId}  </h4>
 	<h4>${detail.locationId}  </h4>
 	
-	
+		<a href="/dept/update?departmentId=${detail.departmentId}">수정</a>
 		<a href="/dept/delete?departmentId=${detail.departmentId}">삭제</a>
 		<form action="/dept/delete"method="get">
 			<input type="hidden" name="departmentId"  value="${detail.departmentId}">

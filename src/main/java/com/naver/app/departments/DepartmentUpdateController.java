@@ -51,7 +51,40 @@ public class DepartmentUpdateController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		DepartmentDTO dto = new DepartmentDTO();
+		
+		dto.setDepartmentId(Integer.parseInt(request.getParameter("departmentId")));
+		dto.setDepartmentName(request.getParameter("departmentName"));
+		dto.setManagerId(Integer.parseInt(request.getParameter("managerId")));
+		dto.setLocationId(Integer.parseInt(request.getParameter("locationId")));
+		
+		DepartmentDAO dao =new DepartmentDAO();
+		
+		
+		try {
+			int result =dao.update(dto);
+			if(result>0) {
+				response.sendRedirect("/dept/list");
+				
+			}else {
+				
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 
 }
