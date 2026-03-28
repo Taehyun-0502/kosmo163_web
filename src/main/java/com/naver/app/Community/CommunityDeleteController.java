@@ -7,19 +7,18 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.PreparedStatement;
 
 /**
- * Servlet implementation class CommunityDetailController
+ * Servlet implementation class CommunityDeleteController
  */
-@WebServlet("/comm/detail")
-public class CommunityDetailController extends HttpServlet {
+@WebServlet("/comm/delete")
+public class CommunityDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CommunityDetailController() {
+    public CommunityDeleteController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,16 +28,16 @@ public class CommunityDetailController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		String num = request.getParameter("num");
 		CommunityDAO dao =new CommunityDAO();
+		CommunityDTO dto =new CommunityDTO();
+		String num = request.getParameter("num");
 		
+		dto.setNum(Long.parseLong(num));
 		try {
-			CommunityDTO dto = dao.detail(Long.parseLong(num));
-			request.setAttribute("detail", dto);
-		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			int result =dao.delete(dto);
+			if(result>0) {
+				response.sendRedirect("/comm/list");
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -46,9 +45,8 @@ public class CommunityDetailController extends HttpServlet {
 		
 		
 		
-		
-		RequestDispatcher re = request.getRequestDispatcher("/WEB-INF/views/comm/detail.jsp");
-		re.forward(request, response);
+	
+	
 	}
 
 	/**

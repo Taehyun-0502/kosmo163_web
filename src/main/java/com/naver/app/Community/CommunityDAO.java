@@ -8,13 +8,113 @@ import java.util.ArrayList;
 
 import com.naver.app.util.DBConnection;
 
+import jakarta.servlet.RequestDispatcher;
+
 public class CommunityDAO {
 		private DBConnection dbc;
 	
 		public CommunityDAO() {
 			this.dbc =new DBConnection();
 		}
-	public CommunityDTO detail(int num) throws Exception {
+	
+		
+		public int update (CommunityDTO dto) throws Exception{
+			Connection con =dbc.getConnection();
+			String sql ="""
+					UPDATE COMMUNITY SET
+					TITLE=?,
+					COUNTENTS=?,
+					STAR=?
+					WHERE NUM=?
+					""";
+			PreparedStatement pr=con.prepareStatement(sql);
+			
+			pr.setString(1, dto.getTitle());
+			pr.setString(2, dto.getCountents());
+			pr.setInt(3, dto.getStar());
+			
+			pr.setLong(4, dto.getNum());
+			int result = pr.executeUpdate();
+			
+			pr.close();
+			con.close();
+			
+			return result;
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		public int delete(CommunityDTO dto) throws Exception {
+			Connection con = dbc.getConnection();
+			String sql= """
+					DELETE COMMUNITY WHERE NUM =?
+					""";
+			PreparedStatement pr = con.prepareStatement(sql);
+			pr.setLong(1, dto.getNum());
+			int result =pr.executeUpdate();
+			
+			pr.close();
+			con.close();
+			return result;
+			
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		public int create(CommunityDTO dto) throws Exception {
+			Connection con =dbc.getConnection();
+			String sql = """
+			INSERT INTO COMMUNITY 
+			VALUES (COMM_SEQ.NEXTVAL,?,?,
+					?,sysdate,?)
+					""";
+			PreparedStatement pr = con.prepareStatement(sql);
+			
+			pr.setString(1,dto.getTitle());
+			pr.setString(2, dto.getName());
+			pr.setString(3, dto.getCountents());
+			pr.setInt(4, dto.getStar());
+			int result = pr.executeUpdate();
+			
+			
+			pr.close();
+			con.close();
+			return result;
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		public CommunityDTO detail(long num) throws Exception {
 		Connection con =dbc.getConnection();
 		String sql = """
 				SELECT * FROM COMMUNITY
@@ -22,7 +122,7 @@ public class CommunityDAO {
 				""";
 		
 		PreparedStatement pr=con.prepareStatement(sql);
-		pr.setInt(1, num);
+		pr.setLong(1, num);
 		CommunityDTO dto =null;
 		ResultSet rs =pr.executeQuery();
 		if(rs.next()) {
@@ -30,7 +130,7 @@ public class CommunityDAO {
 			dto.setNum(rs.getLong("NUM"));
 			dto.setTitle(rs.getString("TITLE"));
 			dto.setName(rs.getString("NAME"));
-			dto.setContents(rs.getString("CONTENES"));
+			dto.setCountents(rs.getString("COUNTENTS"));
 			dto.setCreateTime(rs.getDate("CREATETIME"));
 			dto.setStar(rs.getInt("STAR"));
 			
@@ -61,6 +161,7 @@ public class CommunityDAO {
 		Connection con= dbc.getConnection();
 		String sql = """
 				SELECT NUM,TITLE,NAME,CREATETIME,STAR FROM COMMUNITY
+				ORDER BY CREATETIME DESC
 				""";
 		PreparedStatement view = con.prepareStatement(sql);
 		ResultSet rs =view.executeQuery();

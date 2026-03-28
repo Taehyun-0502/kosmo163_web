@@ -7,7 +7,7 @@ public class CommunityDTO {
 	private Long num;
 	private String title;
 	private String name; 
-	private String contents;
+	private String countents;
 	private Date createTime;
 	private Integer star;
 	
@@ -30,11 +30,12 @@ public class CommunityDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getContents() {
-		return contents;
+	
+	public String getCountents() {
+		return countents;
 	}
-	public void setContents(String contents) {
-		this.contents = contents;
+	public void setCountents(String countents) {
+		this.countents = countents;
 	}
 	public Date getCreateTime() {
 		return createTime;

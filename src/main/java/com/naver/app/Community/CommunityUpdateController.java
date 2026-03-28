@@ -7,19 +7,18 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.PreparedStatement;
 
 /**
- * Servlet implementation class CommunityDetailController
+ * Servlet implementation class CommunityUpdateController
  */
-@WebServlet("/comm/detail")
-public class CommunityDetailController extends HttpServlet {
+@WebServlet("/comm/update")
+public class CommunityUpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CommunityDetailController() {
+    public CommunityUpdateController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,16 +28,40 @@ public class CommunityDetailController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		String num = request.getParameter("num");
+		String num =request.getParameter("num");
+		long nums = Long.parseLong(num);
 		CommunityDAO dao =new CommunityDAO();
+			
+			
 		
 		try {
-			CommunityDTO dto = dao.detail(Long.parseLong(num));
-			request.setAttribute("detail", dto);
-		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			CommunityDTO dto =dao.detail(nums);
+			request.setAttribute("dto", dto);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		RequestDispatcher re =request.getRequestDispatcher("/WEB-INF/views/comm/update.jsp");
+		re.forward(request, response);
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		CommunityDTO dto =new CommunityDTO();
+		dto.setTitle(request.getParameter("title"));
+		dto.setCountents(request.getParameter("countents"));
+		dto.setStar(Integer.parseInt(request.getParameter("star")));
+		dto.setNum(Long.parseLong(request.getParameter("num")));
+		CommunityDAO dao =new CommunityDAO();
+		try {
+			int result =dao.update(dto);
+			if(result>0) {
+				response.sendRedirect("/comm/list");
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -47,16 +70,6 @@ public class CommunityDetailController extends HttpServlet {
 		
 		
 		
-		RequestDispatcher re = request.getRequestDispatcher("/WEB-INF/views/comm/detail.jsp");
-		re.forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }
