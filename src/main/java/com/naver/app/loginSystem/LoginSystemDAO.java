@@ -30,7 +30,8 @@ public class LoginSystemDAO {
 		if(re.next()) {
 			dto.setId(re.getString("id"));
 			dto.setPassword(re.getString("password"));
-			
+			dto.setName(re.getString("name"));
+			dto.setEmail(re.getString("email"));
 			return dto;
 		}else {
 			return null;

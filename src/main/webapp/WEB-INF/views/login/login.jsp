@@ -10,7 +10,9 @@
 	<h1>로그인 화면</h1>
 	
 		<form action="" method="post">
+			<lable>id 입력</lable>
 			<input type="text" name="id">
+			<lable>password 입력</lable>
 			<input type="password" name="password">
 			<button>로그인</button>
 		

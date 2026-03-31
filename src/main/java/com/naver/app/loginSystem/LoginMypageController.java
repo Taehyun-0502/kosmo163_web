@@ -1,5 +1,6 @@
 package com.naver.app.loginSystem;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -10,16 +11,16 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * Servlet implementation class LogoutController
+ * Servlet implementation class LoginMypageController
  */
-@WebServlet("/login/logout")
-public class LogoutController extends HttpServlet {
+@WebServlet("/login/mypage")
+public class LoginMypageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogoutController() {
+    public LoginMypageController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,12 +30,8 @@ public class LogoutController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession hs = request.getSession();
-		
-		hs.invalidate();
-		response.sendRedirect("/home");
-		
-		
+		RequestDispatcher re = request.getRequestDispatcher("/WEB-INF/views/login/mypage.jsp");
+		re.forward(request, response);
 	}
 
 	/**

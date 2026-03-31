@@ -10,12 +10,14 @@
 	<body>
 		<h1>Index Page TH </h1>
 		<a href="/comm/list">	전달 사항 리스트		</a>
-		<a href="/login/member">회원가입</a> 
+		
 		<c:if test="${empty dto}">
+		<a href="/login/member">회원가입</a> 
 		<a href="/login/login">로그인</a>
 		</c:if>
 		<c:if test="${not empty dto}">
 		<a href="/login/logout">로그아웃</a>
+		<a href="/login/mypage">Mypage</a>
 		</c:if>
 	</body>
 </html>
