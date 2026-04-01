@@ -15,11 +15,29 @@
 		<section class="py-5">
 			<div class="container px-5 mb-5">
 				<div class="text-center mb-5">
-                        <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Projects</span></h1>
+                        <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">나라 정보 입력 </span></h1>
                     </div>
 			</div>
 			<div class="row gx-5 justify-content-center">
-				페이지 내용
+				
+			
+					<form action="/country/create" method="post">
+						<div>
+						<label>나라 아이디</label>
+						<input type ="text"name="countryId">
+						</div>
+						<div>
+						<label>나라 이름</label>
+						<input type= "text"name="countryName">
+						</div>
+						<div>
+						<label>나라 코드</label>
+						<input type ="txet" name="regionId">
+						</div>
+						<button type="submit" >등록</button>
+						
+					</form>
+				
 				
 			</div>
 		</section>

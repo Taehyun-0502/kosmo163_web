@@ -1,36 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<c:import url="/WEB-INF/views/temp/head.jsp"></c:import>
 <title>Insert title here</title>
 </head>
-<body>
-	<h1>부서 등록 페이지</h1>
-	
-		<form action="/dept/create" method="post"> 
-				<div>
-					<label >부서명</label>
-					<!-- DTO 의 setter의 이름과 동일하게  -->
-					<input type="text" name="departmentName">
-				</div>
-				<div>
-					<label>관리자 </label>
-					<input type="text" name="managerId">
-				</div>
-				<div>
-					<lable>지역 코드</lable>
-					<input type="text" name="locationId">
-				</div>
-				<button type="submit">button</button>
-				<input type="submit"value="create">
-				<input type="button" value= "등록">
-				<input type="reset" value= "reset">
-		</form>
+<body class="d-flex flex-column h-100">
+	<main class="flex-shrink-0">
+		<c:import url="/WEB-INF/views/temp/nave.jsp"></c:import>
+		
+		<section class="py-5">
+			<div class="container px-5 mb-5">
+				<div class="text-center mb-5">
+                        <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Projects</span></h1>
+                    </div>
+			</div>
+			<div class="row gx-5 justify-content-center">
+					
+					<form action="./create" method="post">
+  <div class="./create" method="post">
+    	<div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">부서명</label>
+    <input type="text" name="departmentName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+    	<div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">관리자id</label>
+    <input type="text" name="managerId" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">지역id</label>
+    <input type="text" name="locationId" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+  </div>
+  
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 				
-	
-	
-	
+			</div>
+		</section>
+		
+	</main>
+	<c:import url="/WEB-INF/views/temp/footer.jsp"></c:import>
 </body>
 </html>
