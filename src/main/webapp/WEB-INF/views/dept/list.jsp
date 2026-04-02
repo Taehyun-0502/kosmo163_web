@@ -21,26 +21,26 @@
 				</div>
 			</div>
 			<div class="row gx-5 justify-content-center">
-			<div class="row gx-5 justify-content-center">
-				<div>
-					<table class="table">
-						<thead>
-							<tr>
-								<th>부서 번호</th>
-								<th>부서명</th>
-							</tr>
-						</thead>
-						<tbody>
-
-							<c:forEach items="${list}" var="d">
+				<div class="row gx-5 justify-content-center">
+					<div>
+						<table class="table">
+							<thead>
 								<tr>
-									<td>${d.departmentId}</td>
-									<td><a href="/dept/detail?departmentId=${d.departmentId}">${d.departmentName}</a></td>
+									<th>부서 번호</th>
+									<th>부서명</th>
 								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-					<a href="./create">부서등록</a>
+							</thead>
+							<tbody>
+
+								<c:forEach items="${list}" var="d">
+									<tr>
+										<td>${d.departmentId}</td>
+										<td><a href="/dept/detail?departmentId=${d.departmentId}">${d.departmentName}</a></td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+						<a href="./create">부서등록</a>
 					</div>
 				</div>
 			</div>
